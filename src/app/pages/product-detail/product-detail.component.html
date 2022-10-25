@@ -1,0 +1,56 @@
+
+
+<div class="container bootstrap snippets bootdey">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page"><button type="button" class="btn btn-light" (click)="goToBack()"><i class="bi bi-arrow-left"></i> back </button></li>
+    </ol>
+  </nav>
+  <div class="row">
+
+<!-- images -->
+<div class="col-sm-6">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let img of product?.images" class="carousel-item active">
+      <img [src]="img" class="d-block w-100" alt="...">
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+<!-- end images -->
+
+<!-- detail product -->
+
+      <div class="col-sm-6 push-bit">
+          <div class="clearfix">
+              <div class="pull-right">
+                  <span class="h2"><strong>{{product?.price|currency:' COP '}}</strong></span>
+              </div>
+              <span class="h4">
+                  <strong class="text-success">{{product?.title}}</strong><br />
+              </span>
+          </div>
+          <hr />
+          <p>
+              {{product?.description}}
+          </p>
+
+          <hr />
+          <button type="submit" class="btn btn-info">Add to Cart</button>
+
+      </div>
+  </div>
+
+<!--   end detail product -->
+
+</div>

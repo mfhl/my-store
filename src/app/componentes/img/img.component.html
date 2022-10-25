@@ -1,0 +1,11 @@
+<!-- <h3 class="text-danger">{{counter}}</h3>
+ -->
+<!-- se pone condicional con ng if para validar si viene vacia o no la imagen -->
+
+<img class="img-fluid rounded mx-auto d-block" height="200px" alt="Responsive image" (load)="imgLoaded"  (error)="imgError()" [src]="img" *ngIf="img; else elsImage">
+<ng-template #elsImage>
+  <img class="" width="200" [src]="imgDefault" alt="">
+</ng-template>
+
+
+

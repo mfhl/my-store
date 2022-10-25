@@ -1,0 +1,146 @@
+<!-- <div class="container">
+  <p>cantidad {{ myShoppingCart.length }}</p>
+  <p>total {{ total }}</p>
+  <p>{{ date | date }}</p>
+  <p>{{ date | timeAgo }}</p>
+  <p>{{ "pspdowSDSCWDSC" | uppercase }}</p>
+</div> -->
+<!-- Vertically centered scrollable modal -->
+
+
+<!-- Alerts -->
+<!-- alert post new product fails -->
+<div  *ngIf="alertBool>='1'">
+  <div class="alert alert-success " role="alert">
+    <strong>{{messageAlert }}</strong>.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      (click)="closeAlertError()"
+    ></button>
+  </div>
+  <ng-template #elseBlock>
+
+  </ng-template>
+  <ng-template #alertErrorCreateProduct>
+    paso bien
+  </ng-template>
+</div>
+
+<div  *ngIf="alertBoolError>='2'">
+  <div class="alert alert-danger" role="aljert">
+    <strong>{{messageAlert }}</strong>.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      (click)="closeAlertError()"
+    ></button>
+  </div>
+</div>
+
+<!-- paginations -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" (click)="loadMorePagination()" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- modals -->
+<!--    toast for susscesfull insert new product post-->
+<div class="toast">
+  <div class="toast-header">
+    <strong class="me-auto text-success ">Created new product</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+  </div>
+  <div class="toast-body">
+    <div class="alert alert-info" role="alert">
+      <p class="fw-semibold">product Name: {{dataTitle}}</p>
+      <p class="fw-semibold">Id: {{ dataId }}</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <hr class="border border-primary border-1 opacity-75">
+
+<!-- Button create new peoduct post-->
+<button (click)="createNewProduct()" type="button" class="btn btn-outline-info fw-semibold">
+  Create New Product <i class="bi bi-plus-square-dotted"></i>
+</button>
+<hr class="border border-primary border-1 opacity-75">
+</div>
+
+<!-- for product list grid -->
+
+<app-product
+  class="col-sm-4"
+  [product]="product"
+  *ngFor="let product of products"
+  (addedProduct)="onAddToShoppingCart($event)"
+  (showProdut)="onShowDetail($event)"
+  ><!-- llegada de los objetos al padre por medio de addedProduct que es el hijo y envia al evento para imprimir en consola -->
+</app-product>
+
+<!-- modal preview detail products -->
+<div *ngIf="producChosen">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title fs-4 fw-bold" id="exampleModalLabel">
+            {{ producChosen.title }}
+          </p>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-sm-12 ">
+          <swiper [slidesPerView]="3">
+            <ng-template swiperSlide *ngFor="let img of producChosen.images">
+              <img class="img-fluid" [src]="img" alt=""
+            /></ng-template>
+          </swiper>
+        </div>
+          <p>{{ producChosen.category.name }}</p>
+          <p>{{ producChosen.description }}</p>
+          <p>{{ producChosen.price }}</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            #closeButtonModalDetailProduct
+            class="btn btn-secondary"
+            data-bs-dismiss="modal" >
+            Close
+          </button>
+          <button (click)="updateProduct()" type="button" class="btn btn-primary">Update </button>
+          <button (click)="deleteProduct()" type="button" class="btn btn-primary">Delete <i class="bi bi-trash"></i> </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end modals-->

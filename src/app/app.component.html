@@ -1,0 +1,75 @@
+<app-nav></app-nav>
+<!-- router outlet la logica la trar app-routing- module -->
+<router-outlet></router-outlet>
+<!-- Alerts -->
+<!-- alert post new product fails -->
+<div *ngIf="alertBool >= '1'">
+  <div class="alert alert-success" role="alert">
+    <strong>{{ messageAlert }}</strong
+    >.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      (click)="closeAlertError()"
+    ></button>
+  </div>
+  <ng-template #elseBlock> </ng-template>
+
+  <ng-template #alertErrorCreateProduct> paso bien </ng-template>
+</div>
+
+<div *ngIf="alertBoolError >= '2'">
+  <div class="alert alert-danger" role="aljert">
+    <strong>{{ messageAlert }}</strong
+    >.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      (click)="closeAlertError()"
+    ></button>
+  </div>
+</div>
+
+<!-- <hr />
+<button type="button" (click)="createUser()" class="btn btn-primary">
+  create user
+</button>
+<button (click)="downloadPdf()">Descargar pdf</button>
+<input type="file" (change)="onUpload($event)">
+<img *ngIf="imgRta" [src]="imgRta" alt=""> -->
+
+<!-- <div class="container text-start">
+  <app-products class="row align-items-start"> </app-products>
+</div> -->
+
+<!-- llamar los componentes como esta escrito en los selectones de componentes  -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-6">
+      <input
+        class="form-control text-danger"
+        type="text"
+        [(ngModel)]="imgParent"
+      />
+    </div>
+    <button class="btn btn-danger col-6" (click)="toggleimg()">togle img</button>
+    <p class="text-danger">{{showImg}}</p> -->
+<!--  llama a app components padre -->
+<!--     <app-img *ngIf="showImg" (loaded)="onLoaded($event)" [img]="imgParent"></app-img>
+  </div>
+</div>
+ -->
+<!-- <hr />
+ --><!-- <div class="container text-left">
+  <div class="row">
+    <app-product
+      class="col"
+      [product]="product"
+      *ngFor="let product of products"
+    ></app-product>
+  </div>
+</div> -->
