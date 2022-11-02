@@ -60,6 +60,13 @@ const routes: Routes = [
       },
     ]
   },
+  //module cms
+  {
+    path:'cms',
+    //import cms module
+    loadChildren:()=>import('./cms/cms.module').then(m=>m.CmsModule)
+
+  },
   {
     path: '**',
     component: NotFoundComponent,
