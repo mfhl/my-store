@@ -5,9 +5,9 @@ import {
   createProductDTO,
   Product,
   updateProductDTO,
-} from '../../models/product.model';
-import { StoreService } from '../../services/store.service';
-import { ProductsService } from '../../services/products.service';
+} from '../../../models/product.model';
+import { StoreService } from '../../../services/store.service';
+import { ProductsService } from '../../../services/products.service';
 import { Subscriber,zip } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

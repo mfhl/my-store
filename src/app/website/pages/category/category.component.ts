@@ -4,7 +4,7 @@ import {switchMap} from  'rxjs/operators'
 //models
 import { Product } from 'src/app/models/product.model';
 //services
-import {ProductsService} from '../../services/products.service'
+import {ProductsService} from '../../../services/products.service'
 
 
 
