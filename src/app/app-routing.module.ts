@@ -1,6 +1,13 @@
+//imports
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes,PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+//ngx quicklink
+import {QuicklinkStrategy} from 'ngx-quicklink';
+
+//modules
+import {CustomPreloadService} from './services/custom-preload.service';
+
 
 
 
@@ -12,8 +19,10 @@ const routes: Routes = [
   {
     path: '',
     //import cms module
-    loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule)
-
+    loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule),
+    data:{
+      preload:true,
+    }
   },
   {
     path: 'cms',
@@ -28,7 +37,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    //preload all modules
+    preloadingStrategy:QuicklinkStrategy,
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

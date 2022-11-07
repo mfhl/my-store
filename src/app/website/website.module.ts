@@ -1,14 +1,15 @@
+//imports 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+//ngx quicklink
+import {QuicklinkModule} from 'ngx-quicklink';
 
+//modules
 import { WebsiteRoutingModule } from './website-routing.module';
-
-
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
-import { CategoryComponent } from './pages/category/category.component';
 import { MycartComponent } from './pages/mycart/mycart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -33,7 +34,6 @@ import { SharedModule } from '../shared/shared.module';
     TruncatePipe,
     SafeHtmlPipe,
     HomeComponent,
-    CategoryComponent,
     MycartComponent,
     LoginComponent,
     RegisterComponent,
@@ -45,7 +45,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }
