@@ -1,1 +1,43 @@
-<p>profile works!</p>
+<div *ngIf="userProfile">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                        </a>
+                        <h1> {{userProfile.name}}</h1>
+                        <p> {{userProfile.email}}</p>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="" (click)="logOut()"> <i class="fa fa-calendar"></i> log out </a></li>
+                        <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                        <li><a routerLink="/cms"> <i class="fa fa-edit"></i> CMS</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+
+                <div class="panel">
+                    <div class="panel-body bio-graph-info">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><span>Name </span>: {{userProfile.name}} </p>
+                                <p><span>Email </span>: {{userProfile.email}} </p>
+                                <p><span>Role </span>: {{userProfile.role}} </p>
+                                <a routerLink="/cms"> <i class="fa fa-edit"></i> CMS</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,12 @@ import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
+
+//Guards
+import {AuthGuard} from './../guards/auth.guard';
+import {ExitGuard} from './../guards/exit.guard';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -49,11 +55,17 @@ const routes: Routes = [
       },
       {
         path: 'register',
+        canDeactivate:[ExitGuard],
         component: RegisterComponent,
       },
       {
         path: 'product/:id',
         component: ProductDetailComponent,
+      },
+      {
+        path: 'profile',
+        canActivate:[AuthGuard],
+        component: ProfileComponent,
       },
     ]
   }

@@ -1,8 +1,10 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild,OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { Auth } from './models/auth.model';
 import { FilesService } from './services/files.service';
+import { TokenService } from './services/token.service';
+
 import { HtmlParser } from '@angular/compiler';
 import { Observable } from 'rxjs';
 
@@ -13,7 +15,16 @@ import { Observable } from 'rxjs';
   template :'<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit  {
+  ngOnInit() {
+
+    const token=this.tokenService.getToken();
+
+    if(token){
+      this.authService.profile()
+      .subscribe()
+    }
+  }
   imgRta='';
 
   imgParent = '';
@@ -31,7 +42,8 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private usersService: UsersService,
-    private filesService:FilesService
+    private filesService:FilesService,
+    private tokenService:TokenService
   ) {}
 
   //recibir informacion del hijo
@@ -48,9 +60,10 @@ export class AppComponent {
         name: 'pepito perez',
         email: 'pepitoperez@gmail.com',
         password: '12345',
+        role:'customer'
+       
       })
       .subscribe((rta) => {
-        console.log(rta);
         this.alertSusscesfull('User Created susscesfull' + ' ' + rta.id);
       },
       (error) => {

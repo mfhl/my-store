@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 //services
 import { AuthService } from '../../../services/auth.service';
@@ -32,12 +34,15 @@ export class NavComponent implements OnInit {
 
 
   profile:User|null=null;
+  userProfile: User|null=null;
+
 
   constructor(
     private storeService: StoreService, //inyeccion de dependencias
     private authService: AuthService,
     private usersService: UsersService,
-    private categoriesService:CategoriesService
+    private categoriesService:CategoriesService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -45,30 +50,42 @@ export class NavComponent implements OnInit {
       this.counter = products.length;
     });
     this.getAllCategories();
+
+    //check session profile 
+    this.authService.user$
+    .subscribe(data=>{
+      this.userProfile=data
+    })
+    // .subscribe(data=>
+    //   {
+    //     this.userProfile=data;
+    //   })
   }
   logIn() {
-    this.authService.logIn('pepitoperez@gmail.com', '12345').subscribe(
+    this.authService.logIn('admin@mail.com', 'admin123').subscribe(
       (rta) => {
-        //console.log(rta.access_token);
-      //  this.token = rta.access_token;
 
         this.getProfile();//usar swhitchmap ojo
-       // this.alertSusscesfull('user Log in Susscesfull' + ' ' + this.token);
       },
       (error) => {
         const statusText = '';
-       // console.log(error.statusText);
         this.errorMessage = error.statusText;
         this.alertsError('user Log in Error ' + this.errorMessage);
       }
     );
   }
 
+  //log out session
+  logout(){
+    this.authService.logout();
+    this.userProfile=null;
+    this.router.navigate(['/home']);
+  }
+
   getProfile() {
     this.authService.profile().subscribe((user) => {
-      //console.log('hizo login y estos son sus datos',user);
-      this.profile=user;
-
+      this.userProfile=user;
+     // console.log('hizo login y estos son sus datos',user);
     });
   }
 
